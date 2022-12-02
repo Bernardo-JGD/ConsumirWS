@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ConsumirWS</string>
+
+    <string name="user">UserId</string>
+    <string name="title">Title</string>
+    <string name="body">Body</string>
+
+    <string name="enviar">Enviar</string>
+    <string name="obtener">Obtener</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="limpiar">Limpiar</string>
+
+    <string name="urlGET">https://jsonplaceholder.typicode.com/posts/1</string>
+    <string name="urlPOST">https://jsonplaceholder.typicode.com/posts</string>
+    <string name="urlUPDATE">https://jsonplaceholder.typicode.com/posts/1</string>
+
+</resources>
