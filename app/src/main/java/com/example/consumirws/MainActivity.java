@@ -23,7 +23,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     EditText txtUser, txtTitle, txtBody;
-    Button btnEnviar, btnObtener, btnActualizar,btnLimpiar;
+    Button btnEnviar, btnObtener, btnActualizar, btnEliminar,btnLimpiar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         btnObtener = findViewById(R.id.btnObtener);
         btnLimpiar = findViewById(R.id.btnLimpiar);
         btnActualizar = findViewById(R.id.btnActualizar);
+        btnEliminar = findViewById(R.id.btnEliminar);
 
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +57,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 actualizar(txtTitle.getText().toString(), txtBody.getText().toString(), txtUser.getText().toString());
+            }
+        });
+
+        btnEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eliminar();
             }
         });
 
@@ -178,6 +186,37 @@ public class MainActivity extends AppCompatActivity {
                 return params;
             }
         };
+
+        //Envio de la peticion
+        Volley.newRequestQueue(this).add(postRequest);
+    }
+
+    private void eliminar(){
+        String url = getString(R.string.urlDELETE);
+        //Definicion de la peticion
+        StringRequest postRequest = new StringRequest(Request.Method.DELETE, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    /*
+                    txtUser.setText(jsonObject.getString("userId"));
+                    //puedo recibirlo en variables, dependiendo de como lo maneje
+                    String title = jsonObject.getString("title");
+                    txtTitle.setText(title);
+                    txtBody.setText(jsonObject.getString("body"));
+                    */
+                    Toast.makeText(MainActivity.this, "Resultado = " + response, Toast.LENGTH_LONG).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
 
         //Envio de la peticion
         Volley.newRequestQueue(this).add(postRequest);

@@ -49,6 +49,12 @@
         android:text="@string/actualizar" />
 
     <Button
+        android:id="@+id/btnEliminar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/eliminar" />
+
+    <Button
         android:id="@+id/btnLimpiar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
